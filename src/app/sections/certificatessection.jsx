@@ -42,7 +42,7 @@ const certificates = [
     id: 6,
     title: 'Research Presenter (Conversazione)',
     issuer: 'HCDC',
-    date: 'April 2023',
+    date: 'May 2025',
     image: '/images/cer6.png',
   }
 ]
