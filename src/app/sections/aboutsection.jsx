@@ -35,7 +35,7 @@ export default function AboutSection() {
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
               <Image 
-                src="/images/IMG_15901.jpg" 
+                src="/images/IMG_15901.JPG" 
                 alt="Profile Picture"
                 fill
                 className="object-cover"
