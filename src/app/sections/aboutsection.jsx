@@ -33,7 +33,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
             className="md:w-1/3"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg float-animate glow-border-gray">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg float-animate glow-strong-gray">
               <Image 
                 src="/images/IMG_15901.JPG" 
                 alt="Profile Picture"
@@ -82,7 +82,7 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Inline CSS for float + gray glow */}
+      {/* Inline CSS for float + strong gray glow */}
       <style jsx>{`
         .float-animate {
           animation: float 4s ease-in-out infinite;
@@ -97,8 +97,8 @@ export default function AboutSection() {
           }
         }
 
-        .glow-border-gray {
-          box-shadow: 0 0 20px rgba(107, 114, 128, 0.6), 0 0 40px rgba(107, 114, 128, 0.3);
+        .glow-strong-gray {
+          box-shadow: 0 0 30px rgba(75, 85, 99, 0.8), 0 0 60px rgba(75, 85, 99, 0.5);
           transition: box-shadow 0.3s ease-in-out;
         }
       `}</style>
