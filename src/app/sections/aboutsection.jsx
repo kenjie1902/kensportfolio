@@ -4,13 +4,25 @@ import Image from 'next/image'
 
 export default function AboutSection() {
   const skills = [
-    'JavaScript', 'React', 'Next.js', 'Node.js', 
+    'JavaScript', 'React', 'Next.js', 'Node.js',
     'Tailwind CSS', 'Figma', 'UI/UX Design', 'Git', 'REST APIs'
   ]
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="about" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
+      {/* SVG Decorative Background */}
+      <svg
+        className="absolute inset-0 w-full h-full z-0"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <circle cx="10%" cy="20%" r="80" fill="#c7d2fe" opacity="0.3" />
+        <circle cx="80%" cy="30%" r="60" fill="#a5b4fc" opacity="0.25" />
+        <circle cx="25%" cy="75%" r="100" fill="#93c5fd" opacity="0.2" />
+        <circle cx="70%" cy="85%" r="40" fill="#d8b4fe" opacity="0.3" />
+      </svg>
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -24,7 +36,7 @@ export default function AboutSection() {
             Get to know more about who I am and what I do
           </p>
         </motion.div>
-        
+
         <div className="flex flex-col md:flex-row items-center gap-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -34,15 +46,15 @@ export default function AboutSection() {
             className="md:w-1/3"
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg float-animate glow-strong-gray">
-              <Image 
-                src="/images/IMG_15901.JPG" 
+              <Image
+                src="/images/IMG_15901.JPG"
                 alt="Profile Picture"
                 fill
                 className="object-cover"
               />
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,17 +71,17 @@ export default function AboutSection() {
               layouts that work across different devices and browsers.
             </p>
             <p className="text-gray-600 mb-8">
-              When I'm not coding, you can find me exploring new technologies, 
-              contributing to open-source projects, or enjoying outdoor 
-              activities. I believe in continuous learning and staying updated 
+              When I'm not coding, you can find me exploring new technologies,
+              contributing to open-source projects, or enjoying outdoor
+              activities. I believe in continuous learning and staying updated
               with the latest industry trends.
             </p>
-            
+
             <div>
               <h4 className="text-xl font-semibold mb-4 text-gray-900">My Skills</h4>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
-                  <span 
+                  <span
                     key={index}
                     className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
                   >
@@ -82,7 +94,7 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Inline CSS for float + strong gray glow */}
+      {/* Inline CSS for float + glow + optional animation */}
       <style jsx>{`
         .float-animate {
           animation: float 4s ease-in-out infinite;

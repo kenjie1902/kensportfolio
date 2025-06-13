@@ -49,8 +49,20 @@ const certificates = [
 
 export default function CertificatesSection() {
   return (
-    <section id="certificates" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="certificates" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
+      {/* SVG Decorative Background - Different circle positions */}
+      <svg
+        className="absolute inset-0 w-full h-full z-0"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <circle cx="20%" cy="10%" r="60" fill="#c7d2fe" opacity="0.3" />
+        <circle cx="90%" cy="20%" r="80" fill="#a5b4fc" opacity="0.25" />
+        <circle cx="40%" cy="65%" r="110" fill="#93c5fd" opacity="0.2" />
+        <circle cx="65%" cy="90%" r="70" fill="#d8b4fe" opacity="0.3" />
+      </svg>
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -73,7 +85,7 @@ export default function CertificatesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
             >
               <div className="relative h-48">
                 <Image 
