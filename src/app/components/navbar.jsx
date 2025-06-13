@@ -21,7 +21,7 @@ export default function Navbar({ scrollProgress }) {
       className="fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-md z-50 shadow-xl border-b border-gray-800"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-14 items-center">
           <a href="#home" className="text-xl font-bold text-gray-100 hover:text-white transition-colors">
             Ken's<span className="text-cyan-400">Portfolio</span>
           </a>
@@ -32,7 +32,7 @@ export default function Navbar({ scrollProgress }) {
               <a 
                 key={link.name}
                 href={link.href}
-                className="text-gray-400 hover:text-cyan-300 transition-colors duration-300 font-medium tracking-wide text-sm uppercase"
+                className="text-gray-400 hover:text-cyan-300 transition-colors duration-300 font-medium tracking-wide "
               >
                 {link.name}
               </a>
@@ -49,15 +49,15 @@ export default function Navbar({ scrollProgress }) {
         </div>
       </div>
       
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Reduced padding-bottom here */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-900/95 py-4 px-4 shadow-inner border-t border-gray-800">
-          <div className="flex flex-col space-y-3">
+        <div className="md:hidden bg-gray-900/95 py-3 px-4 shadow-inner border-t border-gray-800">
+          <div className="flex flex-col space-y-2">
             {links.map((link) => (
               <a 
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 px-4 py-3 rounded-md hover:bg-gray-800/50 font-medium tracking-wide text-sm uppercase"
+                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 px-4 py-2 rounded-md hover:bg-gray-800/50 font-medium tracking-wide text-sm uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}

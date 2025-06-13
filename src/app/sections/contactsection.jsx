@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { FiMail, FiMapPin, FiPhone, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiPhone, FiGithub, FiLinkedin, FiFacebook } from 'react-icons/fi'
 
 export default function ContactSection() {
   const formRef = useRef()
@@ -79,7 +79,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Email</h4>
-                    <a href="mailto:your.email@example.com" className="text-gray-600 hover:text-blue-600">
+                    <a href="mailto:kenn.saniel@gmail.com" className="text-gray-600 hover:text-blue-600">
                       kenn.saniel@gmail.com
                     </a>
                   </div>
@@ -91,7 +91,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Location</h4>
-                    <p className="text-gray-600">Davao City</p>
+                    <p className="text-gray-600">Davao City, Philippines</p>
                   </div>
                 </div>
                 
@@ -101,8 +101,8 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Phone</h4>
-                    <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">
-                    +63906231258
+                    <a href="tel:+63906231258" className="text-gray-600 hover:text-blue-600">
+                      +63 906 231 258
                     </a>
                   </div>
                 </div>
@@ -111,14 +111,29 @@ export default function ContactSection() {
               <div className="mt-12">
                 <h4 className="font-bold text-gray-900 mb-4">Follow Me</h4>
                 <div className="flex space-x-4">
-                  <a href="#" className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600">
+                  <a 
+                    href="https://github.com/kenjie1902" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  >
                     <FiGithub size={20} />
                   </a>
-                  <a href="#" className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600">
+                  <a 
+                    href="https://linkedin.com  " 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  >
                     <FiLinkedin size={20} />
                   </a>
-                  <a href="#" className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600">
-                    <FiTwitter size={20} />
+                  <a 
+                    href="https://www.facebook.com/kenjie.saniel" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  >
+                    <FiFacebook size={20} />
                   </a>
                 </div>
               </div>
@@ -184,7 +199,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                  className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
