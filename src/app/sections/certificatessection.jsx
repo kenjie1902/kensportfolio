@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const certificates = [
   {
@@ -48,14 +49,12 @@ const certificates = [
 ]
 
 export default function CertificatesSection() {
+  const [selectedImage, setSelectedImage] = useState(null)
+
   return (
     <section id="certificates" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
-      {/* SVG Decorative Background - Different circle positions */}
-      <svg
-        className="absolute inset-0 w-full h-full z-0"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
+      {/* SVG Background */}
+      <svg className="absolute inset-0 w-full h-full z-0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <circle cx="20%" cy="10%" r="60" fill="#c7d2fe" opacity="0.3" />
         <circle cx="90%" cy="20%" r="80" fill="#a5b4fc" opacity="0.25" />
         <circle cx="40%" cy="65%" r="110" fill="#93c5fd" opacity="0.2" />
@@ -85,7 +84,9 @@ export default function CertificatesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+              whileHover={{ scale: 1.03 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => setSelectedImage(cert.image)}
             >
               <div className="relative h-48">
                 <Image 
@@ -93,6 +94,7 @@ export default function CertificatesSection() {
                   alt={cert.title}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="p-6">
@@ -104,6 +106,35 @@ export default function CertificatesSection() {
           ))}
         </div>
       </div>
+
+      {/* Image Popup */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-6xl w-full max-h-[90vh]">
+            <button 
+              className="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300 z-10"
+              onClick={(e) => {
+                e.stopPropagation()
+                setSelectedImage(null)
+              }}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <Image 
+              src={selectedImage} 
+              alt="Certificate preview"
+              width={1200}
+              height={800}
+              className="object-contain w-full h-full max-h-[80vh]"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
