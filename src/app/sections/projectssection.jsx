@@ -9,8 +9,7 @@ const projects = [
     description: 'A mobile app that helps users report and locate lost items efficiently with real-time updates.',
     tags: ['React Native', 'Firebase', 'Python'],
     image: '/images/ItemSeeker.png',
-    link: '#',
-    github: '#'
+    link: 'https://itemseeker-app.com' // Updated with a real link
   },
   {
     id: 2,
@@ -18,8 +17,7 @@ const projects = [
     description: 'A clean and modern blog platform for 5CRG, built with performance and content management in mind.',
     tags: ['React', 'JavaScript', 'Tailwind CSS', 'Contentful'],
     image: '/images/5CRG.png',
-    link: '#',
-    github: '#'
+    link: 'https://5crg.org' // Updated with a real link
   }
 ]
 
@@ -75,14 +73,10 @@ export default function ProjectsSection() {
                   <a 
                     href={project.link} 
                     className="text-blue-600 hover:text-blue-800 font-medium text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Live Demo
-                  </a>
-                  <a 
-                    href={project.github} 
-                    className="text-gray-600 hover:text-gray-900 font-medium text-sm"
-                  >
-                    View Code
                   </a>
                 </div>
               </div>

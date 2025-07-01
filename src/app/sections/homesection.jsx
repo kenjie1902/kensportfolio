@@ -1,14 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiFacebook } from 'react-icons/fi'
-
-// Generate star dots
-const dots = Array.from({ length: 80 }).map(() => ({
-  cx: Math.random() * 100,
-  cy: Math.random() * 100,
-  r: Math.random() * 1.5 + 0.3,
-  delay: Math.random() * 5,
-}))
+import { useEffect, useRef } from 'react'
 
 export default function HomeSection() {
   const handleDownloadCV = () => {
@@ -21,77 +14,144 @@ export default function HomeSection() {
     document.body.removeChild(link)
   }
 
-  // Social media links
   const socialLinks = [
     { 
       icon: <FiGithub size={24} />, 
-      url: 'https://github.com/kenjie1902', // Replace with your GitHub URL
+      url: 'https://github.com/kenjie1902',
       color: 'hover:text-gray-300',
       label: 'GitHub'
     },
     { 
       icon: <FiLinkedin size={24} />, 
-      url: 'https://linkedin.com', // Replace with your LinkedIn URL
+      url: 'https://linkedin.com',
       color: 'hover:text-blue-400',
       label: 'LinkedIn'
     },
     { 
       icon: <FiTwitter size={24} />, 
-      url: 'https://twitter.com', // Replace with your Twitter URL
+      url: 'https://twitter.com',
       color: 'hover:text-blue-400',
       label: 'Twitter'
     },
     { 
       icon: <FiMail size={24} />, 
-      url: 'mailto:your.email@example.com', // Replace with your email
+      url: 'mailto:your.email@example.com',
       color: 'hover:text-red-400',
       label: 'Email'
     },
     { 
       icon: <FiFacebook size={24} />, 
-      url: 'https://www.facebook.com/kenjie.saniel', // Replace with your Facebook URL
+      url: 'https://www.facebook.com/kenjie.saniel',
       color: 'hover:text-blue-500',
       label: 'Facebook'
     },
   ]
 
-  return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-900">
-      {/* Starfield Background */}
-      <svg
-        className="absolute inset-0 w-full h-full z-0"
-        preserveAspectRatio="xMidYMid meet"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        {dots.map((dot, i) => (
-          <circle
-            key={i}
-            cx={`${dot.cx}%`}
-            cy={`${dot.cy}%`}
-            r={dot.r}
-            fill="white"
-            opacity="0.8"
-          >
-            <animate
-              attributeName="opacity"
-              values="0;0.8;0"
-              dur={`${Math.random() * 4 + 3}s`}
-              repeatCount="indefinite"
-              begin={`${dot.delay}s`}
-            />
-            <animateTransform
-              attributeName="transform"
-              type="scale"
-              values="1;1.2;1"
-              dur={`${Math.random() * 5 + 5}s`}
-              repeatCount="indefinite"
-            />
-          </circle>
-        ))}
-      </svg>
+  // This function will generate a random position for a particle
+  const generateRandomPosition = () => ({
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+  })
 
-      {/* Content Container */}
+  // To make the dots "blink" in different places, we'll use a new keyframe animation.
+  // The animation will toggle the opacity from 0 to 1 and back, and then immediately
+  // change the position with a custom CSS variable, which we will update with a unique value for each particle.
+  const particleStyles = `
+    @keyframes blink {
+      0% { opacity: 0; transform: scale(0.5); }
+      1% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+  `
+
+  return (
+    <section id="home" className="min-h-screen relative overflow-hidden bg-gray-900">
+      {/* Animated Background */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          background: 'linear-gradient(135deg, #111827 0%, #1f2937 100%)',
+        }}
+      >
+        {/* Grid Lines */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={`line-${i}`}
+            style={{
+              position: 'absolute',
+              width: i % 2 === 0 ? '1px' : '100%',
+              height: i % 2 === 0 ? '100%' : '1px',
+              background: 'rgba(255, 255, 255, 0.1)',
+              animation: 'fade 5s ease-in-out infinite',
+              left: i % 2 === 0 ? `${i * 5}%` : 0,
+              top: i % 2 === 0 ? 0 : `${i * 5}%`,
+              animationDelay: `${i * 0.2}s`,
+              pointerEvents: 'none',
+            }}
+          />
+        ))}
+        
+        {/* Particles */}
+        {Array.from({ length: 50 }).map((_, i) => {
+          const { top, left } = generateRandomPosition()
+          return (
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                width: '4px',
+                height: '4px',
+                background: 'rgba(255, 255, 255, 0.7)',
+                borderRadius: '50%',
+                animation: `blink 3s infinite`,
+                animationDelay: `${Math.random() * 3}s`,
+                top: top,
+                left: left,
+                pointerEvents: 'none',
+              }}
+            />
+          )
+        })}
+        
+        {/* The keyframes are injected here */}
+        <style jsx global>{`
+          @keyframes fade {
+            0% {
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+
+          @keyframes blink {
+            0% {
+              opacity: 0;
+              transform: scale(0.5);
+            }
+            1% {
+              opacity: 1;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0;
+              transform: scale(0.5);
+            }
+            100% {
+              opacity: 0;
+              transform: scale(0.5);
+            }
+          }
+        `}</style>
+      </div>
+
+      {/* Main Content */}
       <div className="container mx-auto px-6 py-24 z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
